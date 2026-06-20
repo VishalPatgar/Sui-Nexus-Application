@@ -6,3 +6,12 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Ignore binary executables and archives
+*.exe
+*.dll
+*.zip
+*.tgz
+*.tar.gz
+*.7z
+*.pkg
