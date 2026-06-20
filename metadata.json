@@ -1,0 +1,6 @@
+{
+  "name": "Sui Nexus",
+  "description": "A decentralized, executable knowledge graph. Create, link, query, and run on-chain knowledge objects represented as Sui objects.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
