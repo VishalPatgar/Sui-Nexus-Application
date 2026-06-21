@@ -1,6 +1,6 @@
 # 🌌 Sui Nexus
 
-![Sui Nexus Logo](https://github.com/VishalPatgar/Sui-Nexus-Application/blob/main/assets/sui-nexus-logo.png)
+<img src="src/sui-nexus-logo.png" alt="Sui Nexus Logo" width="200"/>
 
 > **Sui Nexus** — a decentralized knowledge canvas built on the **Sui blockchain**, where facts become living digital objects, disputes are resolved through staking consensus, and ideas evolve transparently.
 
