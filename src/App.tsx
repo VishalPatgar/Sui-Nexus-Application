@@ -4,6 +4,7 @@
  */
 
 import React, { useEffect, useState, FormEvent } from "react";
+
 import { KnowledgeNode, RelationshipEdge, SuiTx, DaoProposal, UserWallet } from "./types";
 import { motion, AnimatePresence } from "motion/react";
 import { Transaction } from "@mysten/sui/transactions";
@@ -604,13 +605,12 @@ export default function App() {
             
             {/* Logo */}
             <div className="flex items-center gap-3 px-2">
-              <div className="relative">
-                <div className="w-11 h-11 bg-gradient-to-tr from-cyan-400 via-sky-500 to-violet-600 rounded-xl flex items-center justify-center shadow-[0_0_25px_rgba(6,182,212,0.25)] border border-white/10">
-                  <Workflow className="w-6 h-6 text-white" />
-                </div>
-                <div className="absolute -bottom-1 -right-1 bg-cyan-400 text-neutral-950 font-black text-[8px] px-1.5 rounded py-0.5 border border-neutral-950 font-mono scale-90 tracking-wide">
-                  SUI
-                </div>
+              <div className="relative flex items-center justify-center">
+                <img 
+                  src="/sui-nexus-logo.png" 
+                  alt="Sui Nexus Logo" 
+                  className="w-14 h-14 object-contain drop-shadow-[0_0_12px_rgba(6,182,212,0.35)]"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="font-extrabold text-white tracking-widest text-base font-sans uppercase leading-none">
@@ -862,9 +862,19 @@ export default function App() {
                       </motion.div>
                       
                       <div className="max-w-xl space-y-4">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-cyan-950/50 border border-cyan-800/40 text-cyan-400 text-[11px] font-mono rounded-full font-bold uppercase tracking-wider">
-                          <Sparkles className="w-3.5 h-3.5" />
-                          <span>Sui Nexus Production Suite</span>
+                        {/* App Logo on homepage hero */}
+                        <div className="flex items-center gap-4">
+                          <div className="relative">
+                            <img
+                              src="/sui-nexus-logo.png"
+                              alt="Sui Nexus Logo"
+                              className="w-16 h-16 object-contain drop-shadow-[0_0_20px_rgba(6,182,212,0.5)] animate-[pulse_4s_ease-in-out_infinite]"
+                            />
+                          </div>
+                          <div className="inline-flex items-center gap-2 px-3 py-1 bg-cyan-950/50 border border-cyan-800/40 text-cyan-400 text-[11px] font-mono rounded-full font-bold uppercase tracking-wider">
+                            <Sparkles className="w-3.5 h-3.5" />
+                            <span>Sui Nexus Production Suite</span>
+                          </div>
                         </div>
                         
                         <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white leading-tight font-sans">
@@ -1399,21 +1409,27 @@ export default function App() {
                       <div className="bg-neutral-900/40 border border-neutral-850 p-4.5 rounded-2xl flex flex-col justify-between gap-3 relative overflow-hidden">
                         <span className="absolute top-2 right-3 font-mono text-2xl font-extrabold text-neutral-800/40">01</span>
                         <div className="space-y-1.5">
-                          <h4 className="text-[11.5px] font-bold text-white">Authenticating zkLogin</h4>
-                          <p className="text-[10.5px] text-neutral-400 leading-normal">Connect simulated Web2 authentication context smoothly.</p>
+                          <h4 className="text-[11.5px] font-bold text-white">Connect Sui Wallet</h4>
+                          <p className="text-[10.5px] text-neutral-400 leading-normal">Connect your Sui wallet (e.g. Sui Wallet extension) to sign on-chain transactions.</p>
                         </div>
-                        {wallet.connected ? (
+                        {currentAccount ? (
                           <span className="text-[10.5px] bg-emerald-950/30 text-emerald-400 border border-emerald-900/30 px-2 py-1 rounded-lg text-center font-mono">
-                            ✓ zkLogin Connected
+                            ✓ Wallet Connected: {currentAccount.address.slice(0, 6)}...{currentAccount.address.slice(-4)}
                           </span>
                         ) : (
                           <button
                             onClick={() => {
-                              addNotification("Click 'Connect zkLogin Wallet' at the top right header", "info");
+                              // Programmatically click the ConnectButton rendered by dapp-kit in the header
+                              const connectBtn = document.querySelector('[data-testid="connect-button"], #wallet-module button') as HTMLButtonElement;
+                              if (connectBtn) {
+                                connectBtn.click();
+                              } else {
+                                addNotification("Click the 'Connect Wallet' button in the top-right header to connect your Sui wallet.", "info");
+                              }
                             }}
                             className="w-full py-1 text-center bg-cyan-950 text-cyan-400 border border-cyan-900 rounded-xl hover:bg-cyan-900 hover:text-white transition-all text-[11px] font-bold cursor-pointer"
                           >
-                            Authenticate Now
+                            Connect Wallet →
                           </button>
                         )}
                       </div>
