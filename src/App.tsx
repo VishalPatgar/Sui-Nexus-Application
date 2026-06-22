@@ -4,6 +4,7 @@
  */
 
 import React, { useEffect, useState, FormEvent } from "react";
+import suiNexusLogo from "./sui-nexus-logo.png";
 
 import { KnowledgeNode, RelationshipEdge, SuiTx, DaoProposal, UserWallet } from "./types";
 import { motion, AnimatePresence } from "motion/react";
@@ -607,7 +608,7 @@ export default function App() {
             <div className="flex items-center gap-3 px-2">
               <div className="relative flex items-center justify-center">
                 <img 
-                  src="/sui-nexus-logo.png" 
+                  src={suiNexusLogo} 
                   alt="Sui Nexus Logo" 
                   className="w-14 h-14 object-contain drop-shadow-[0_0_12px_rgba(6,182,212,0.35)]"
                 />
@@ -866,7 +867,7 @@ export default function App() {
                         <div className="flex items-center gap-4">
                           <div className="relative">
                             <img
-                              src="/sui-nexus-logo.png"
+                              src={suiNexusLogo}
                               alt="Sui Nexus Logo"
                               className="w-16 h-16 object-contain drop-shadow-[0_0_20px_rgba(6,182,212,0.5)] animate-[pulse_4s_ease-in-out_infinite]"
                             />
