@@ -6,7 +6,6 @@
 import express from "express";
 import path from "path";
 import fs from "fs";
-import { createServer as createViteServer } from "vite";
 import { KnowledgeNode, RelationshipEdge, SuiTx, DaoProposal } from "./src/types.js";
 
 const app = express();
@@ -944,6 +943,7 @@ app.post("/api/simulator/toggle", (req, res) => {
 // Serve files with Vite middleware / Static files
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
