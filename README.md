@@ -1,20 +1,55 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# 🌌 Sui Nexus
 
-# Run and deploy your AI Studio app
+<img src="src/sui-nexus-logo.png" alt="Sui Nexus Logo" width="200"/>
 
-This contains everything you need to run your app locally.
+> **Sui Nexus** — a decentralized knowledge canvas built on the **Sui blockchain**, where facts become living digital objects, disputes are resolved through staking consensus, and ideas evolve transparently.
 
-View your app in AI Studio: https://ai.studio/apps/c23525d6-bdf9-40b6-9c59-d251335fbcf5
+---
 
-## Run Locally
+## ⚙️ What It Is
+Sui Nexus is a **next‑generation dApp** that transforms how information is stored, verified, and upgraded.  
+It uses **Move smart contracts** and **DAO governance** to create a **trust layer for human knowledge** — permanent yet adaptable.
 
-**Prerequisites:**  Node.js
+---
 
+## 🔮 Core Features
+- **Immutable Knowledge Objects:** Facts stored as blockchain entities with full provenance.  
+- **Dynamic Upgrades:** Facts can evolve while preserving their history.  
+- **Concept Graphs:** Link ideas through transaction‑backed edges to form a living web of truth.  
+- **Community Governance:** Disputes resolved via staking votes and DAO moderation.  
+- **Developer Terminal:** Explore, query, and interact with the Sui ledger directly.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+---
+
+## 🌍 Potential Use Cases
+| Domain | Application |
+|--------|--------------|
+| **Research & Academia** | Publish peer‑reviewed facts as immutable objects. |
+| **Open Source** | Document evolving standards and protocols transparently. |
+| **Decentralized Journalism** | Store verified claims and resolve disputes publicly. |
+| **Education** | Build a blockchain‑backed encyclopedia curated by learners. |
+| **AI & Data Science** | Feed verifiable, auditable knowledge into AI models. |
+
+---
+
+## 💡 Vision
+Imagine **Wikipedia meets GitHub**, powered by blockchain consensus — a **living library of truth** where every idea, correction, and connection is recorded forever.  
+That’s **Sui Nexus**: the **Nexus of Knowledge**, decentralized, transparent, and unstoppable.
+
+---
+
+## 🧩 Tech Stack
+- **Blockchain:** Sui  
+- **Language:** Move  
+- **Frontend:** React / TypeScript  
+- **Governance:** DAO‑based curation  
+- **Storage:** On‑chain object persistence  
+
+---
+
+## 🛠️ Getting Started
+```bash
+git clone https://github.com/VishalPatgar/Sui-Nexus-Application.git
+cd Sui-Nexus-Application
+npm install
+npm run dev
