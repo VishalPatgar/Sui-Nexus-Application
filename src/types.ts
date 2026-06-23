@@ -19,6 +19,8 @@ export interface KnowledgeNode {
   size?: number; // Metadata size
   // Dynamic fields simulator
   dynamicFields?: Record<string, any>;
+  // Walrus Integration (Sui Overflow 2026 - Walrus Track)
+  walrusBlobId?: string;
 }
 
 // Edge structure

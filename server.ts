@@ -290,8 +290,31 @@ app.get("/api/proposals", (req, res) => {
   res.json(proposals);
 });
 
+// Walrus Testnet Publisher Integration
+async function storeOnWalrus(data: any): Promise<string> {
+  try {
+    const response = await fetch("https://publisher.walrus-testnet.walrus.space/v1/store?epochs=5", {
+      method: "PUT",
+      body: typeof data === 'string' ? data : JSON.stringify(data),
+    });
+    
+    if (response.ok) {
+      const result = await response.json();
+      if (result.alreadyCertified) {
+        return result.alreadyCertified.blobId;
+      } else if (result.newlyCreated) {
+        return result.newlyCreated.blobObject.blobId;
+      }
+    }
+  } catch (error) {
+    console.warn("Walrus Testnet Publisher unreachable, falling back to mock blob ID.");
+  }
+  // Fallback / Mock blob ID for hackathon demo
+  return "0x_walrus_blob_" + Math.random().toString(36).substring(2, 15);
+}
+
 // POST Create Node (Knowledge Object)
-app.post("/api/node", (req, res) => {
+app.post("/api/node", async (req, res) => {
   const { name, description, tags, owner, references, color } = req.body;
 
   if (!name || !description) {
@@ -301,6 +324,16 @@ app.post("/api/node", (req, res) => {
   const senderAddress = owner || "0x_anonymous_zklogin_user";
   const idValue = generateSuiId();
   const txDigest = generateDigest();
+
+  // Upload node data to Walrus decentralized storage
+  const walrusBlobId = await storeOnWalrus({
+    id: idValue,
+    name,
+    description,
+    tags: tags ? tags.map((t: string) => t.trim().toLowerCase()).filter(Boolean) : [],
+    owner: senderAddress,
+    timestamp: Date.now()
+  });
 
   // Create KnowledgeNode
   const newNode: KnowledgeNode = {
@@ -316,6 +349,7 @@ app.post("/api/node", (req, res) => {
     references: references ? references.map((r: string) => r.trim()).filter(Boolean) : [],
     color: color || "#a45eff",
     size: 25,
+    walrusBlobId,
     dynamicFields: {
       "creation_nonce": Math.floor(Math.random() * 1000000).toString(),
       "validator_signature": "0x_sig_approved_" + Math.floor(Math.random() * 9999).toString()
