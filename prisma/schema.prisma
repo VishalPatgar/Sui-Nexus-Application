@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model KnowledgeNode {
+  id            String   @id
+  name          String
+  description   String
+  tags          String
+  owner         String
+  createdAt     BigInt
+  updatedAt     BigInt
+  version       Int
+  trustScore    Int
+  references    String
+  color         String?
+  size          Int?
+  walrusBlobId  String?
+  dynamicFields String?
+}
+
+model RelationshipEdge {
+  id               String   @id
+  source           String
+  target           String
+  relationshipType String
+  weight           Int
+  createdBy        String
+  createdAt        BigInt
+  color            String?
+}
+
+model SuiTx {
+  digest          String   @id
+  sender          String
+  timestamp       BigInt
+  kind            String
+  gasUsed         Float
+  status          String
+  errorMessage    String?
+  changedObjectId String
+  events          String
+}
+
+model DaoProposal {
+  id             String   @id
+  title          String
+  description    String
+  type           String
+  status         String
+  creator        String
+  votesFor       Int
+  votesAgainst   Int
+  reward         Int
+  createdAt      BigInt
+  votedAddresses String
+}

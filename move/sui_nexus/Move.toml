@@ -3,8 +3,9 @@ name = "sui_nexus"
 edition = "2024"
 
 [dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "testnet" }
 
 [addresses]
 sui_nexus = "0x0"
 
-[env.devnet]
+[env.testnet]

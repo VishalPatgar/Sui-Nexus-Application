@@ -14,6 +14,7 @@ module sui_nexus::nexus {
         trust_score: u64,
         color: String,
         owner: address,
+        walrus_blob_id: String,
     }
 
     /// An edge between two nodes in the knowledge graph.
@@ -32,6 +33,7 @@ module sui_nexus::nexus {
         node_id: address,
         name: String,
         owner: address,
+        walrus_blob_id: String,
     }
 
     /// Event emitted when an edge is created
@@ -54,6 +56,7 @@ module sui_nexus::nexus {
         name: vector<u8>,
         description: vector<u8>,
         color: vector<u8>,
+        walrus_blob_id: vector<u8>,
         ctx: &mut TxContext
     ) {
         let node_id = object::new(ctx);
@@ -68,12 +71,14 @@ module sui_nexus::nexus {
             trust_score: 50,
             color: string::utf8(color),
             owner: sender,
+            walrus_blob_id: string::utf8(walrus_blob_id),
         };
 
         event::emit(NodeCreated {
             node_id: node_addr,
             name: node.name,
             owner: sender,
+            walrus_blob_id: node.walrus_blob_id,
         });
 
         // Make the node a shared object so anyone can interact/vote on it
